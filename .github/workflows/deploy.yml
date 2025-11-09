@@ -22,7 +22,7 @@ jobs:
       - name: Install, build, and upload your site
         uses: withastro/action@v5
         with:
-          node-version: 24
+          node-version: 24.11.0
           path: .
           package-manager: bun@latest
           build-cmd: bun run build
