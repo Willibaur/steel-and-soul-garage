@@ -1,10 +1,23 @@
-# Astro Starter Kit: Minimal
+# 🏍️ Steel & Soul Garage
 
-```sh
-bun create astro@latest -- --template minimal
-```
+> Latin American Garage specializing in LowRider and custom bike paint
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+**Live Site**: http://localhost:4321/steel-and-soul-garage (dev server)
+
+## ✨ Features
+
+- 🎨 Modern, gradient-based design with dark/light mode
+- 🌍 Bilingual support (English/Spanish)
+- 📱 Fully responsive (mobile, tablet, desktop)
+- ⚡ Lightning-fast Astro static site
+- ♿ Accessible and SEO-optimized
+- 🎯 Zero JavaScript by default (only where needed)
+
+## � Documentation
+
+- **[SUMMARY.md](./SUMMARY.md)** - Quick overview of the project
+- **[CONVERSION_NOTES.md](./CONVERSION_NOTES.md)** - Technical details of the Astro conversion
+- **[CHECKLIST.md](./CHECKLIST.md)** - Post-conversion tasks and deployment checklist
 
 ## 🚀 Project Structure
 

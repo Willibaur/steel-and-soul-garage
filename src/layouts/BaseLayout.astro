@@ -1,0 +1,48 @@
+---
+import '../styles/global.css'
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const {
+  title = 'Steel & Soul Garage',
+  description = 'Latin American Garage specializing in LowRider and custom bike paint'
+} = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <title>{title}</title>
+
+    <!-- Theme script (runs before page render to prevent flash) -->
+    <script is:inline>
+      (function() {
+        const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        if (darkModeQuery.matches) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-[#0a0520] dark:via-[#1a0a3e] dark:to-[#2a0e4a] transition-colors duration-300">
+    <slot />
+
+    <!-- Theme detection script -->
+    <script>
+      import '../scripts/theme';
+    </script>
+  </body>
+</html>
