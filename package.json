@@ -9,12 +9,16 @@
   "devDependencies": {
     "@biomejs/biome": "2.3.4"
   },
+  "engines": {
+    "node": "24.11.0"
+  },
   "name": "steel-and-soul-garage",
   "scripts": {
     "astro": "astro",
     "build": "astro check && astro build",
     "dev": "astro dev",
     "lint": "biome check --write .",
+    "preinstall": "bun scripts/pre-install",
     "preview": "astro preview"
   },
   "type": "module",
