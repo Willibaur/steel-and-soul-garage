@@ -68,13 +68,14 @@ const { lang, t } = Astro.props
 
   <script>
     const languageToggle = document.getElementById('language-toggle');
+
     if (languageToggle) {
       languageToggle.addEventListener('click', () => {
         const currentLang = languageToggle.getAttribute('data-lang');
-        console.log('💻 🐛 - currentLang:', currentLang)
         const newLang = currentLang === 'en' ? 'es' : 'en';
-        const newPath = window.location.pathname.replace(/^\/(en|es)/, `/${newLang}`);
-        window.location.pathname = newPath;
+
+        // Use href for full URL manipulation
+        window.location.href = window.location.href.replace(/\/(en|es)(\/|$)/, `/${newLang}$2`);
       });
     }
   </script>
