@@ -9,7 +9,7 @@ export default {
     location: 'Nuestra ubicación',
     phone: 'Llámanos'
   },
-  languageButton: 'Cambiar a Inglés 🇺🇸',
+  languageSelector: 'EN 🇺🇸',
   meta: {
     description:
       'Garage Latinoamericano especializado en LowRiders y pintado personalizado de motos.'

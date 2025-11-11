@@ -9,7 +9,7 @@ export default {
     location: 'Our location',
     phone: 'Call Us'
   },
-  languageButton: 'Switch to Spanish 🇨🇴',
+  languageSelector: 'ES 🇨🇴',
   meta: {
     description:
       'Latin American Garage specializing in LowRider and custom bike paint.'
