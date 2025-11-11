@@ -1,31 +1,25 @@
 ---
+import ActionButton from '@components/ActionButton.astro'
 import '../styles/global.css'
+import constants from '@i18n/constants'
 
-interface Props {
-  title?: string
-  description?: string
-}
-
-const {
-  title = 'Steel & Soul Garage',
-  description = 'Latin American Garage specializing in LowRider and custom bike paint'
-} = Astro.props
+const { lang, t } = Astro.props
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
+    <meta name="description" content={t.meta.description} />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Open Graph / Social Media -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={constants.title} />
+    <meta property="og:description" content={t.meta.description} />
     <meta property="og:type" content="website" />
 
-    <title>{title}</title>
+    <title>{constants.title}</title>
 
     <!-- Theme script (runs before page render to prevent flash) -->
     <script is:inline>
@@ -37,12 +31,51 @@ const {
       })();
     </script>
   </head>
+
   <body class="min-h-screen bg-linear-to-b from-gray-50 to-gray-100 dark:from-[#0a0520] dark:via-[#1a0a3e] dark:to-[#2a0e4a] transition-colors duration-300">
     <slot />
 
-    <!-- Theme detection script -->
+    <!-- <script>
+      const languageSelected = document.getElementById('language-selected') as HTMLSelectElement | null
+
+      languageSelected?.addEventListener('change', ({ target }) => {
+        const selectedLang = (target as HTMLSelectElement).value
+        const newPath = window.location.pathname.replace(/^\/(en|es)/, `/${selectedLang}`)
+        window.location.pathname = newPath
+      })
+    </script> -->
+
     <script>
       import '../scripts/theme';
     </script>
   </body>
+
+  <footer>
+    <ActionButton
+      variant="language"
+      id="language-toggle"
+      data-lang={lang}
+    >
+      <span class="text-lg">{t.languageButton}</span>
+    </ActionButton>
+
+    <div class="mt-12 text-center">
+      <p class="text-sm text-gray-600 dark:text-gray-500">
+        © 2025 Steel & Soul Garage
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const languageToggle = document.getElementById('language-toggle');
+    if (languageToggle) {
+      languageToggle.addEventListener('click', () => {
+        const currentLang = languageToggle.getAttribute('data-lang');
+        console.log('💻 🐛 - currentLang:', currentLang)
+        const newLang = currentLang === 'en' ? 'es' : 'en';
+        const newPath = window.location.pathname.replace(/^\/(en|es)/, `/${newLang}`);
+        window.location.pathname = newPath;
+      });
+    }
+  </script>
 </html>
