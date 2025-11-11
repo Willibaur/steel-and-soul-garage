@@ -2,6 +2,7 @@
   "compilerOptions": {
     "paths": {
       "@components/*": ["./src/components/*"],
+      "@i18n/*": ["./src/i18n/*"],
       "@layouts/*": ["./src/layouts/*"],
       "@translations/*": ["./src/content/translations/*"]
     }
