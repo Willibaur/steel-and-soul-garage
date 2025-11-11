@@ -4,6 +4,7 @@ export default {
     title: 'About Us'
   },
   code: 'en',
+  comingSoon: 'Coming Soon',
   contactUs: {
     email: 'Email Us',
     location: 'Our location',
@@ -14,9 +15,5 @@ export default {
     description:
       'Latin American Garage specializing in LowRider and custom bike paint.'
   },
-  paymentButton: 'Make a Payment',
-  socialNetworks: {
-    instagram: 'Follow us on Instagram',
-    tiktok: 'Follow us on TikTok'
-  }
+  paymentButton: 'Make a Payment'
 }

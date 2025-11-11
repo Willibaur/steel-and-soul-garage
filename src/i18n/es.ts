@@ -4,6 +4,7 @@ export default {
     title: 'Sobre Nosotros'
   },
   code: 'es',
+  comingSoon: 'Próximamente',
   contactUs: {
     email: 'Envíanos un email',
     location: 'Nuestra ubicación',
@@ -14,9 +15,5 @@ export default {
     description:
       'Garage Latinoamericano especializado en LowRiders y pintado personalizado de motos.'
   },
-  paymentButton: 'Realizar un Pago',
-  socialNetworks: {
-    instagram: 'Síguenos en Instagram',
-    tiktok: 'Síguenos en TikTok'
-  }
+  paymentButton: 'Realizar un Pago'
 }

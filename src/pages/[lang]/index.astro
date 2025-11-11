@@ -47,26 +47,26 @@ const t = translations[lang]
 
     <div class="space-y-4">
       <ActionLink
-        href="https://www.instagram.com/steel.and.soul.garage/"
+        href={constants.socialNetworks.instagram}
         variant="instagram"
         external
       >
         <Instagram size={24} />
-        <span class="text-lg">{t.socialNetworks.instagram}</span>
+        <span class="text-lg">@{constants.socialNetworks.handle}</span>
       </ActionLink>
 
       <ActionLink
-        href="https://www.tiktok.com/@steel.and.soul.garage"
+        href={constants.socialNetworks.tiktok}
         variant="tiktok"
         external
       >
         <TikTok size={24} />
-        <span class="text-lg">{t.socialNetworks.tiktok}</span>
+        <span class="text-lg">@{constants.socialNetworks.handle}</span>
       </ActionLink>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <ActionLink
-          href="mailto:steel.and.soul.garage@gmail.com"
+          href={`mailto:${constants.email}`}
           variant="email"
         >
           <Mail size={24} />
@@ -74,7 +74,7 @@ const t = translations[lang]
         </ActionLink>
 
         <ActionLink
-          href="tel:+573142766708"
+          href={`tel:${constants.phone}`}
           variant="phone"
         >
           <Phone size={24} />
@@ -83,8 +83,9 @@ const t = translations[lang]
       </div>
 
       <ActionButton
+        badgeText={t.comingSoon}
+        disabled
         variant="payment"
-        onclick="alert('QR Payment functionality coming soon!')"
       >
         <QrCode size={24} />
         <span class="text-lg">{t.paymentButton}</span>
@@ -120,7 +121,7 @@ const t = translations[lang]
           />
         </div>
         <div class="p-3 text-sm text-center text-gray-600 dark:text-gray-400">
-          Calle 51 A # 35-39 Sur - Fatima - Bogotá D.C. - Colombia
+          {constants.address}
         </div>
       </Card>
     </div>
