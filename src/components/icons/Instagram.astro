@@ -1,0 +1,12 @@
+---
+import InstagramIcon from '@icons/instagram.svg'
+
+interface Props {
+  color?: string
+  size?: number
+}
+
+const { color = '#FFFFFF', size = 24 } = Astro.props
+---
+
+<InstagramIcon height={size} width={size} fill={color} />
