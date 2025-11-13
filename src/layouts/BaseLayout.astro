@@ -37,44 +37,24 @@ const copyRightText = `© ${new Date().getFullYear()} ${constants.title}`
     <slot />
 
     <footer class="relative mt-12 pb-8 px-4">
-      <div class="flex flex-col md:flex-row items-center justify-center md:relative gap-4">
+      <div class="flex flex-col md:flex-row items-center justify-center gap-4">
         <p class="text-sm text-gray-600 dark:text-gray-500">
           {copyRightText}
         </p>
-
-        <!-- 3D Language Toggle Switch -->
-        <div class="flex items-center gap-3 md:absolute md:right-12">
-          <span class="text-xs text-gray-600 dark:text-gray-400" id="language-label">
-            {t.languageSelector}
-          </span>
-
-          <button
-            aria-label={t.languageSelector}
-            data-lang={lang}
-            id="language-toggle"
-            class="relative w-16 h-8 rounded-full transition-all duration-300 focus:outline-none group bg-linear-to-b from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 overflow-hidden"
-            style="box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1);"
-          >
-            <!-- Toggle Track Inner Glow -->
-            <div
-              id="track-glow"
-              class="absolute inset-0 rounded-full opacity-50 transition-opacity duration-300"
-            ></div>
-
-            <!-- Toggle Ball -->
-            <div
-              id="toggle-ball"
-              class="absolute top-0.5 w-7 h-7 left-2 transition-all duration-300 ease-in-out"
-            >
-              <div
-                id="ball-inner"
-                class="w-full h-full rounded-full transition-all duration-300"
-              ></div>
-            </div>
-          </button>
-        </div>
       </div>
     </footer>
+
+    {/* Floating Language Toggle Button (FAB) */}
+    <button
+      aria-label={t.languageSelector}
+      data-lang={lang}
+      id="language-fab"
+      class="fixed bottom-6 right-6 w-14 h-14 rounded-full transition-all duration-300 transform hover:scale-110 active:scale-95 focus:outline-none z-50 flex items-center justify-center shadow-lg"
+    >
+      <span class="text-2xl" id="language-flag">
+        {lang === 'en' ? '🇨🇴' : '🇺🇸'}
+      </span>
+    </button>
 
     <script>
       import '../scripts/theme';
@@ -82,62 +62,52 @@ const copyRightText = `© ${new Date().getFullYear()} ${constants.title}`
   </body>
 
   <script>
-    const languageToggle = document.getElementById('language-toggle');
-    const toggleBall = document.getElementById('toggle-ball');
-    const ballInner = document.getElementById('ball-inner');
-    const trackGlow = document.getElementById('track-glow');
-    const languageLabel = document.getElementById('language-label');
+    const languageFab = document.getElementById('language-fab');
+    const languageFlag = document.getElementById('language-flag');
 
-    if (languageToggle && toggleBall && ballInner && trackGlow) {
-      const currentLang = languageToggle.getAttribute('data-lang') || 'en';
+    if (languageFab && languageFlag) {
+      const currentLang = languageFab.getAttribute('data-lang') || 'en';
       const isDark = document.documentElement.classList.contains('dark');
 
       // Apply initial styles based on language
-      const applyLanguageStyles = (lang: string) => {
+      const applyLanguageStyles = (lang: string, isDarkMode: boolean) => {
         const isEnglish = lang === 'en';
 
-        // Update toggle button background
-        if (isDark) {
-          languageToggle.style.background = 'linear-gradient(180deg, #374151 0%, #1f2937 100%)';
-          languageToggle.style.boxShadow = 'inset 0 2px 4px rgba(0, 0, 0, 0.6), 0 1px 2px rgba(0, 0, 0, 0.3)';
-        } else {
-          languageToggle.style.background = 'linear-gradient(180deg, #e5e7eb 0%, #d1d5db 100%)';
-          languageToggle.style.boxShadow = 'inset 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1)';
-        }
-
-        // Update track glow
-        trackGlow.style.background = isEnglish
-          ? 'linear-gradient(90deg, transparent 0%, rgba(34, 211, 238, 0.3) 100%)'
-          : 'linear-gradient(90deg, rgba(236, 72, 153, 0.3) 0%, transparent 100%)';
-
-        // Update ball position
-        toggleBall.style.left = isEnglish ? '2px' : 'calc(100% - 30px)';
-
-        // Update ball appearance
         if (isEnglish) {
-          ballInner.style.background = isDark
-            ? 'linear-gradient(145deg, #22d3ee, #06b6d4)'
-            : 'linear-gradient(145deg, #67e8f9, #22d3ee)';
-          ballInner.style.boxShadow = isDark
-            ? '0 2px 8px rgba(34, 211, 238, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.2)'
-            : '0 2px 8px rgba(34, 211, 238, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.5), inset 0 -2px 4px rgba(0, 0, 0, 0.1)';
+          languageFab.style.background = isDarkMode
+            ? 'linear-gradient(135deg, #ec4899, #db2777)'
+            : 'linear-gradient(135deg, #f9a8d4, #ec4899)';
+          languageFab.style.boxShadow = isDarkMode
+            ? '0 4px 20px rgba(236, 72, 153, 0.5), 0 0 40px rgba(236, 72, 153, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.2)'
+            : '0 4px 20px rgba(236, 72, 153, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3)';
         } else {
-          ballInner.style.background = isDark
-            ? 'linear-gradient(145deg, #ec4899, #db2777)'
-            : 'linear-gradient(145deg, #f9a8d4, #ec4899)';
-          ballInner.style.boxShadow = isDark
-            ? '0 2px 8px rgba(236, 72, 153, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.2)'
-            : '0 2px 8px rgba(236, 72, 153, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.5), inset 0 -2px 4px rgba(0, 0, 0, 0.1)';
+          languageFab.style.background = isDarkMode
+            ? 'linear-gradient(135deg, #22d3ee, #06b6d4)'
+            : 'linear-gradient(135deg, #67e8f9, #22d3ee)';
+          languageFab.style.boxShadow = isDarkMode
+            ? '0 4px 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.2)'
+            : '0 4px 20px rgba(34, 211, 238, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3)';
         }
       };
 
       // Apply initial styles
-      applyLanguageStyles(currentLang);
+      applyLanguageStyles(currentLang, isDark);
 
       // Handle click
-      languageToggle.addEventListener('click', () => {
+      languageFab.addEventListener('click', () => {
         const newLang = currentLang === 'en' ? 'es' : 'en';
         window.location.href = window.location.href.replace(/\/(en|es)(\/|$)/, `/${newLang}$2`);
+      });
+
+      // Update styles when theme changes
+      const observer = new MutationObserver(() => {
+        const isDarkNow = document.documentElement.classList.contains('dark');
+        applyLanguageStyles(currentLang, isDarkNow);
+      });
+
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class']
       });
     }
   </script>
