@@ -2,13 +2,17 @@
 import ActionButton from '@components/ActionButton.astro'
 import ActionLink from '@components/ActionLink.astro'
 import Card from '@components/Card.astro'
+import Email from '@components/icons/Email.astro'
 import InstagramIcon from '@components/icons/Instagram.astro'
+import MapLocation from '@components/icons/MapLocation.astro'
+import PeopleIcon from '@components/icons/People.astro'
+import Phone from '@components/icons/Phone.astro'
+import QrCode from '@components/icons/QrCode.astro'
 import TikTok from '@components/icons/TikTok.astro'
 import constants from '@i18n/constants'
 import en from '@i18n/en'
 import es from '@i18n/es'
 import BaseLayout from '@layouts/BaseLayout.astro'
-import { Mail, MapPin, Phone, QrCode } from '@lucide/astro'
 
 const logoPath = '/steel-and-soul-garage/images/logo.webp'
 
@@ -70,7 +74,7 @@ const t = translations[lang]
           href={`mailto:${constants.email}`}
           variant="email"
         >
-          <Mail size={24} />
+          <Email size={24} />
           <span class="text-lg">{t.contactUs.email}</span>
         </ActionLink>
 
@@ -93,9 +97,12 @@ const t = translations[lang]
       </ActionButton>
 
       <Card class="bg-white/80 dark:bg-gray-900/50 border border-gray-200 dark:border-pink-500/30">
-        <h3 class="mb-3 text-xl font-semibold text-gray-900 dark:text-pink-400">
-          {t.about.title}
-        </h3>
+        <div class="flex flex-items-center gap-2 mb-3">
+          <PeopleIcon className="text-gray-900 dark:text-pink-400" />
+          <h3 class="mb-3 text-xl font-semibold text-gray-900 dark:text-pink-400">
+            {t.about.title}
+          </h3>
+        </div>
         <p class="text-gray-700 dark:text-gray-300">
           {t.about.text}
         </p>
@@ -104,8 +111,10 @@ const t = translations[lang]
       <Card class="p-0 overflow-hidden bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-cyan-500/30">
         <div class="p-4">
           <div class="flex items-center gap-2 mb-3">
-            <MapPin size={24} class="text-gray-700 dark:text-cyan-400" />
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-cyan-400">{t.contactUs.location}</h3>
+            <MapLocation size={24} className="text-gray-900 dark:text-cyan-400" />
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-cyan-400">
+              {t.contactUs.location}
+            </h3>
           </div>
         </div>
 

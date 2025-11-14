@@ -1,0 +1,14 @@
+---
+import PhoneIcon from '@icons/phone.svg'
+
+interface Props {
+  className?: string
+  color?: string
+  fill?: string
+  size?: number
+}
+
+const { className, fill = 'transparent', size = 24 } = Astro.props
+---
+
+<PhoneIcon class={className} fill={fill} height={size} width={size} />
