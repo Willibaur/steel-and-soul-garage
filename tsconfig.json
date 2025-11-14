@@ -3,6 +3,7 @@
     "paths": {
       "@components/*": ["./src/components/*"],
       "@i18n/*": ["./src/i18n/*"],
+      "@icons/*": ["./public/icons/*"],
       "@layouts/*": ["./src/layouts/*"],
       "@translations/*": ["./src/content/translations/*"]
     }
