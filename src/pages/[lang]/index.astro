@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets'
 import ActionButton from '@components/ActionButton.astro'
 import ActionLink from '@components/ActionLink.astro'
 import Card from '@components/Card.astro'
@@ -12,9 +13,8 @@ import TikTok from '@components/icons/TikTok.astro'
 import constants from '@i18n/constants'
 import en from '@i18n/en'
 import es from '@i18n/es'
+import ssgLogo from '@images/logo.webp'
 import BaseLayout from '@layouts/BaseLayout.astro'
-
-const logoPath = '/steel-and-soul-garage/images/logo.webp'
 
 export function getStaticPaths() {
   return [{ params: { lang: 'en' } }, { params: { lang: 'es' } }]
@@ -36,11 +36,10 @@ const t = translations[lang]
 <BaseLayout lang={lang} t={t}>
   <div class="max-w-2xl mx-auto px-4 py-8 sm:py-12">
     <div class="mb-8 flex justify-center">
-      <img
-        src={logoPath}
-        alt="Steel & Soul Garage Logo"
+      <Image
+        alt="Steel & Soul Garage logo"
         class="w-full max-w-md h-auto rounded-2xl shadow-2xl"
-        loading="eager"
+        src={ssgLogo}
       />
     </div>
 
