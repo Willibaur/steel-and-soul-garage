@@ -1,5 +1,5 @@
 const toolsVersionsRequired = {
-  bun: '1.3.2',
+  bun: '1.3.3',
   node: '24.11.0'
 }
 
