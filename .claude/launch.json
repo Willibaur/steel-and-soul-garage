@@ -1,0 +1,11 @@
+{
+  "configurations": [
+    {
+      "name": "astro-dev",
+      "port": 4321,
+      "runtimeArgs": ["run", "dev"],
+      "runtimeExecutable": "bun"
+    }
+  ],
+  "version": "0.0.1"
+}

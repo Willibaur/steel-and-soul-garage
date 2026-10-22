@@ -1,6 +1,6 @@
 const toolsVersionsRequired = {
-  bun: '1.4.3',
-  node: '24.11.0'
+  bun: '1.4.4',
+  node: '24.22.1'
 }
 
 // Exact-match policy: keep these pins in sync with deploy.yml (bun + node-version)
