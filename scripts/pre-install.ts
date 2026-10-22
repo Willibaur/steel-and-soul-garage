@@ -1,7 +1,11 @@
 const toolsVersionsRequired = {
-  bun: '1.3.3',
+  bun: '1.4.3',
   node: '24.11.0'
 }
+
+// Exact-match policy: keep these pins in sync with deploy.yml (bun + node-version)
+const isVersionAccepted = (installed: string, required: string): boolean =>
+  installed === required
 
 for (const [tool, requiredVersion] of Object.entries(toolsVersionsRequired)) {
   try {
@@ -12,7 +16,7 @@ for (const [tool, requiredVersion] of Object.entries(toolsVersionsRequired)) {
       versionOutput.split(' ')[1] || versionOutput
     ).replace(/^[vV]/, '')
 
-    if (installedVersion !== requiredVersion) {
+    if (!isVersionAccepted(installedVersion, requiredVersion)) {
       console.error(
         `🚨 Error: ${tool} version ${requiredVersion} is required, but version ${installedVersion} is installed.`
       )

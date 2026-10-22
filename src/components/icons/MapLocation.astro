@@ -3,11 +3,10 @@ import MapLocationIcon from '@icons/map-location.svg'
 
 interface Props {
   className?: string
-  color?: string
   size?: number
 }
 
-const { className, color = '#FFFFFF', size = 24 } = Astro.props
+const { className, size = 24 } = Astro.props
 ---
 
 <MapLocationIcon class={className} height={size} width={size} />
