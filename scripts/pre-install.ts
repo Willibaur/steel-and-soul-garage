@@ -3,7 +3,7 @@ const toolsVersionsRequired = {
   node: '24.22.1'
 }
 
-// Exact-match policy: keep these pins in sync with deploy.yml (bun + node-version)
+// Exact-match policy: keep these pins in sync with deploy.yml (bun + node-version) and check.yml
 const isVersionAccepted = (installed: string, required: string): boolean =>
   installed === required
 
