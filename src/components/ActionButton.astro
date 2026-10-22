@@ -25,10 +25,12 @@ const variantClasses = {
 
 <button
   class:list={[
-    'block w-full p-4 rounded-xl transition-all text-white',
-    !disabled && 'transform hover:scale-105 bg-linear-to-r hover:shadow-lg',
+    'block w-full p-4 rounded-xl transition-all',
+    !disabled &&
+      'text-white transform hover:scale-105 bg-linear-to-r hover:shadow-lg',
     !disabled && variantClasses[variant],
-    disabled && 'opacity-50 cursor-not-allowed bg-gray-400 dark:bg-gray-600',
+    disabled &&
+      'cursor-not-allowed bg-gray-200 text-gray-600 dark:bg-gray-600/50 dark:text-gray-300',
     className
   ]}
   disabled={disabled}

@@ -12,7 +12,10 @@ export default defineConfig({
       prefixDefaultLocale: true
     }
   },
-  site: 'https://willibaur.github.io',
+  redirects: {
+    '/': '/es'
+  },
+  site: 'https://www.steel-and-soul-garage.co',
   vite: {
     plugins: [tailwindcss()]
   }

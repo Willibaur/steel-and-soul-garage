@@ -13,6 +13,7 @@ const copyRightText = `© ${new Date().getFullYear()} ${constants.title}`
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={t.meta.description} />
     <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content={constants.title} />
@@ -35,7 +36,8 @@ const copyRightText = `© ${new Date().getFullYear()} ${constants.title}`
   <body class="min-h-screen bg-linear-to-b from-gray-50 to-gray-100 dark:from-[#0a0520] dark:via-[#1a0a3e] dark:to-[#2a0e4a] transition-colors duration-300">
     <slot />
 
-    <footer class="relative mt-12 pb-8 px-4">
+    {/* pb-24 keeps the last content clear of the floating language button */}
+    <footer class="relative mt-12 pb-24 px-4">
       <div class="flex flex-col md:flex-row items-center justify-center gap-4">
         <p class="text-sm text-gray-600 dark:text-gray-500">
           {copyRightText}
@@ -58,56 +60,56 @@ const copyRightText = `© ${new Date().getFullYear()} ${constants.title}`
     <script>
       import '../scripts/theme';
     </script>
+
+    <script>
+      const languageFab = document.getElementById('language-fab');
+      const languageFlag = document.getElementById('language-flag');
+
+      if (languageFab && languageFlag) {
+        const currentLang = languageFab.getAttribute('data-lang') || 'en';
+        const isDark = document.documentElement.classList.contains('dark');
+
+        // Apply initial styles based on language
+        const applyLanguageStyles = (lang: string, isDarkMode: boolean) => {
+          const isEnglish = lang === 'en';
+
+          if (isEnglish) {
+            languageFab.style.background = isDarkMode
+              ? 'linear-gradient(135deg, #ec4899, #db2777)'
+              : 'linear-gradient(135deg, #f9a8d4, #ec4899)';
+            languageFab.style.boxShadow = isDarkMode
+              ? '0 4px 20px rgba(236, 72, 153, 0.5), 0 0 40px rgba(236, 72, 153, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.2)'
+              : '0 4px 20px rgba(236, 72, 153, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3)';
+          } else {
+            languageFab.style.background = isDarkMode
+              ? 'linear-gradient(135deg, #22d3ee, #06b6d4)'
+              : 'linear-gradient(135deg, #67e8f9, #22d3ee)';
+            languageFab.style.boxShadow = isDarkMode
+              ? '0 4px 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.2)'
+              : '0 4px 20px rgba(34, 211, 238, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3)';
+          }
+        };
+
+        // Apply initial styles
+        applyLanguageStyles(currentLang, isDark);
+
+        // Handle click
+        languageFab.addEventListener('click', () => {
+          const newLang = currentLang === 'en' ? 'es' : 'en';
+          window.location.href = window.location.href.replace(/\/(en|es)(\/|$)/, `/${newLang}$2`);
+        });
+
+        // Update styles when theme changes
+        const observer = new MutationObserver(() => {
+          const isDarkNow = document.documentElement.classList.contains('dark');
+          applyLanguageStyles(currentLang, isDarkNow);
+        });
+
+        observer.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['class']
+        });
+      }
+    </script>
   </body>
-
-  <script>
-    const languageFab = document.getElementById('language-fab');
-    const languageFlag = document.getElementById('language-flag');
-
-    if (languageFab && languageFlag) {
-      const currentLang = languageFab.getAttribute('data-lang') || 'en';
-      const isDark = document.documentElement.classList.contains('dark');
-
-      // Apply initial styles based on language
-      const applyLanguageStyles = (lang: string, isDarkMode: boolean) => {
-        const isEnglish = lang === 'en';
-
-        if (isEnglish) {
-          languageFab.style.background = isDarkMode
-            ? 'linear-gradient(135deg, #ec4899, #db2777)'
-            : 'linear-gradient(135deg, #f9a8d4, #ec4899)';
-          languageFab.style.boxShadow = isDarkMode
-            ? '0 4px 20px rgba(236, 72, 153, 0.5), 0 0 40px rgba(236, 72, 153, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.2)'
-            : '0 4px 20px rgba(236, 72, 153, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3)';
-        } else {
-          languageFab.style.background = isDarkMode
-            ? 'linear-gradient(135deg, #22d3ee, #06b6d4)'
-            : 'linear-gradient(135deg, #67e8f9, #22d3ee)';
-          languageFab.style.boxShadow = isDarkMode
-            ? '0 4px 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.2)'
-            : '0 4px 20px rgba(34, 211, 238, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3)';
-        }
-      };
-
-      // Apply initial styles
-      applyLanguageStyles(currentLang, isDark);
-
-      // Handle click
-      languageFab.addEventListener('click', () => {
-        const newLang = currentLang === 'en' ? 'es' : 'en';
-        window.location.href = window.location.href.replace(/\/(en|es)(\/|$)/, `/${newLang}$2`);
-      });
-
-      // Update styles when theme changes
-      const observer = new MutationObserver(() => {
-        const isDarkNow = document.documentElement.classList.contains('dark');
-        applyLanguageStyles(currentLang, isDarkNow);
-      });
-
-      observer.observe(document.documentElement, {
-        attributes: true,
-        attributeFilter: ['class']
-      });
-    }
-  </script>
 </html>
