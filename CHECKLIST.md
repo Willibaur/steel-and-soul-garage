@@ -5,7 +5,7 @@
 ### 1. Add Logo Image
 
 - [x] Create or obtain Steel & Soul Garage logo
-- [x] Saved as `public/images/logo.webp` (1024×1024 WebP)
+- [x] Saved as `src/assets/images/logo.webp` (1024×1024 WebP)
 
 ### 2. Update Google Maps
 
