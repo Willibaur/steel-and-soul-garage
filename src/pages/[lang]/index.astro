@@ -24,7 +24,6 @@ interface LanguageParams {
   lang: 'en' | 'es'
 }
 
-export const defaultRedirect = '/es'
 const { lang } = Astro.params as LanguageParams
 const translations = {
   en,
@@ -92,14 +91,14 @@ const t = translations[lang]
         disabled
         variant="payment"
       >
-        <QrCode size={24} />
+        <QrCode color="currentColor" size={24} />
         <span class="text-lg">{t.paymentButton}</span>
       </ActionButton>
 
       <Card class="bg-white/80 dark:bg-gray-900/50 border border-gray-200 dark:border-pink-500/30">
-        <div class="flex flex-items-center gap-2 mb-3">
+        <div class="flex items-center gap-2 mb-3">
           <PeopleIcon className="text-gray-900 dark:text-pink-400" />
-          <h3 class="mb-3 text-xl font-semibold text-gray-900 dark:text-pink-400">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-pink-400">
             {t.about.title}
           </h3>
         </div>
@@ -108,7 +107,7 @@ const t = translations[lang]
         </p>
       </Card>
 
-      <Card class="p-0 overflow-hidden bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-cyan-500/30">
+      <Card padding="none" class="overflow-hidden bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-cyan-500/30">
         <div class="p-4">
           <div class="flex items-center gap-2 mb-3">
             <MapLocation size={24} className="text-gray-900 dark:text-cyan-400" />
@@ -122,7 +121,7 @@ const t = translations[lang]
           <iframe
             allowfullscreen
             height="100%"
-            loading="eager"
+            loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d994.2611207409137!2d-74.13817557140231!3d4.5860385365216905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9f27b6ea8ff7%3A0x6f943d5bd65028f6!2sCl.%2051a%20Sur%20%2335-39%2C%20Bogot%C3%A1%2C%20Colombia!5e0!3m2!1sen!2sus!4v1764099931921!5m2!1sen!2sus"
             style="border: 0;"

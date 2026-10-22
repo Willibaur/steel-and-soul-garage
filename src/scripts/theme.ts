@@ -1,20 +1,7 @@
-// Theme detection and persistence
-function initTheme() {
-  const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)')
+// The initial theme is applied by the inline script in BaseLayout's <head>
+// (before first paint); this module only keeps it in sync with OS changes.
+const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
-  function applyTheme(isDark: boolean) {
-    document.documentElement.classList.toggle('dark', isDark)
-  }
-
-  // Apply initial theme
-  applyTheme(darkModeQuery.matches)
-
-  darkModeQuery.addEventListener('change', (e) => {
-    applyTheme(e.matches)
-  })
-}
-
-initTheme()
-
-// Re-initialize on page navigation (View Transitions)
-document.addEventListener('astro:page-load', initTheme)
+darkModeQuery.addEventListener('change', (e) => {
+  document.documentElement.classList.toggle('dark', e.matches)
+})
