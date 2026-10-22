@@ -10,7 +10,8 @@ export default {
     location: 'Our location',
     phone: 'Call Us'
   },
-  languageSelector: 'ES 🇨🇴',
+  languageSelector: 'Cambiar a español',
+  logoAlt: 'Steel & Soul Garage logo',
   meta: {
     description:
       'Latin American Garage specializing in LowRider and custom bike paint.'

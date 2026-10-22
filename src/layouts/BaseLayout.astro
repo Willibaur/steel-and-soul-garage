@@ -1,9 +1,19 @@
 ---
 import '../styles/global.css'
+import { getImage } from 'astro:assets'
 import constants from '@i18n/constants'
+import ssgLogo from '@images/logo.webp'
 
 const { lang, t } = Astro.props
 const copyRightText = `© ${new Date().getFullYear()} ${constants.title}`
+
+// Trailing slash matches how GitHub Pages serves /es/index.html (it 301s /es → /es/)
+const pageUrl = (code: string) => new URL(`/${code}/`, Astro.site).href
+const ogLocales: Record<string, string> = { en: 'en_US', es: 'es_CO' }
+const otherLang = lang === 'en' ? 'es' : 'en'
+
+// Social crawlers handle JPEG better than WebP, and the source logo is ~2.5 MB
+const ogImage = await getImage({ format: 'jpeg', src: ssgLogo, width: 1024 })
 ---
 
 <!doctype html>
@@ -14,11 +24,20 @@ const copyRightText = `© ${new Date().getFullYear()} ${constants.title}`
     <meta name="description" content={t.meta.description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={pageUrl(lang)} />
+    <link rel="alternate" hreflang="es" href={pageUrl('es')} />
+    <link rel="alternate" hreflang="en" href={pageUrl('en')} />
+    <link rel="alternate" hreflang="x-default" href={pageUrl('es')} />
 
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content={constants.title} />
     <meta property="og:description" content={t.meta.description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={pageUrl(lang)} />
+    <meta property="og:image" content={new URL(ogImage.src, Astro.site).href} />
+    <meta property="og:image:alt" content={t.logoAlt} />
+    <meta property="og:locale" content={ogLocales[lang]} />
+    <meta property="og:locale:alternate" content={ogLocales[otherLang]} />
 
     <title>{constants.title}</title>
 
@@ -50,6 +69,7 @@ const copyRightText = `© ${new Date().getFullYear()} ${constants.title}`
       aria-label={t.languageSelector}
       data-lang={lang}
       id="language-fab"
+      lang={otherLang}
       class="fixed bottom-6 right-6 w-14 h-14 rounded-full transition-all duration-300 transform hover:scale-110 active:scale-95 focus:outline-none z-50 flex items-center justify-center shadow-lg"
     >
       <span class="text-2xl" id="language-flag">
