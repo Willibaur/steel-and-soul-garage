@@ -14,7 +14,8 @@
   "scripts": {
     "astro": "astro",
     "build": "astro check && astro build",
-    "dev": "astro dev --host 0.0.0.0",
+    "dev": "astro dev",
+    "dev:lan": "astro dev --host 0.0.0.0",
     "lint": "biome check --write .",
     "preinstall": "bun scripts/pre-install",
     "preview": "astro preview"

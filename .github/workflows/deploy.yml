@@ -6,10 +6,10 @@ on:
 
   workflow_dispatch:
 
+# Least privilege: the build job runs third-party code (the action and package
+# install scripts), so only the deploy job gets the Pages write permissions
 permissions:
   contents: read
-  id-token: write
-  pages: write
 
 jobs:
   build:
@@ -17,10 +17,10 @@ jobs:
 
     steps:
       - name: Checkout your repository using git
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Install, build, and upload your site
-        uses: withastro/action@v6
+        uses: withastro/action@3eafd002e65cc31b4f0eae0bb05450d521562247 # v6.1.3
         with:
           node-version: 24.22.1
           path: .
@@ -31,6 +31,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
+    permissions:
+      id-token: write
+      pages: write
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -38,4 +42,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

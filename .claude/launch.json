@@ -5,6 +5,12 @@
       "port": 4321,
       "runtimeArgs": ["run", "dev"],
       "runtimeExecutable": "bun"
+    },
+    {
+      "name": "astro-preview",
+      "port": 4321,
+      "runtimeArgs": ["run", "preview"],
+      "runtimeExecutable": "bun"
     }
   ],
   "version": "0.0.1"
