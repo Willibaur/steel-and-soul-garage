@@ -10,7 +10,8 @@ export default {
     location: 'Nuestra ubicación',
     phone: 'Llámanos'
   },
-  languageSelector: 'EN 🇺🇸',
+  languageSelector: 'Switch to English',
+  logoAlt: 'Logo de Steel & Soul Garage',
   meta: {
     description:
       'Garage Latinoamericano especializado en LowRiders y pintado personalizado de motos.'

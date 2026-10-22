@@ -2,7 +2,7 @@
 
 > Latin American Garage specializing in LowRider and custom bike paint
 
-**Live Site**: http://localhost:4321/steel-and-soul-garage (dev server)
+**Live Site**: https://www.steel-and-soul-garage.co
 
 ## ✨ Features
 
@@ -13,11 +13,18 @@
 - ♿ Accessible and SEO-optimized
 - 🎯 Zero JavaScript by default (only where needed)
 
-## � Documentation
+## 📚 Documentation
 
-- **[SUMMARY.md](./SUMMARY.md)** - Quick overview of the project
-- **[CONVERSION_NOTES.md](./CONVERSION_NOTES.md)** - Technical details of the Astro conversion
-- **[CHECKLIST.md](./CHECKLIST.md)** - Post-conversion tasks and deployment checklist
+- **[CHECKLIST.md](./CHECKLIST.md)** - Remaining tasks and enhancement ideas
+
+## 🚢 Deployment
+
+The site is deployed to GitHub Pages at https://www.steel-and-soul-garage.co:
+1. Open a PR against `main`.
+2. When it is merged, the [Deploy workflow](./.github/workflows/deploy.yml) builds the site with Bun and publishes `dist/` to GitHub Pages.
+3. The custom domain is set in the repository's Pages settings.
+
+`/` redirects to `/es` (Spanish is the default language); the English version lives at `/en`.
 
 ## 🚀 Project Structure
 
